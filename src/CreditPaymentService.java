@@ -1,8 +1,12 @@
 public class CreditPaymentService {
-    public double calculate(double kreditSum, double quantityMonth, double percent) {
-        double koefficent = percent / 100 / 12 * ((1 + percent / 100 / 12) * (1 + percent / 100 / 12) * (1 + percent / 100 / 12) * (1 + percent / 100 / 12) * (1 + percent / 100 / 12) * (1 + percent / 100 / 12) * (1 + percent / 100 / 12) * (1 + percent / 100 / 12) * (1 + percent / 100 / 12) * (1 + percent / 100 / 12) * (1 + percent / 100 / 12) * (1 + percent / 100 / 12)) / (((1 + percent / 100 / 12) * (1 + percent / 100 / 12) * (1 + percent / 100 / 12) * (1 + percent / 100 / 12) * (1 + percent / 100 / 12) * (1 + percent / 100 / 12) * (1 + percent / 100 / 12) * (1 + percent / 100 / 12) * (1 + percent / 100 / 12) * (1 + percent / 100 / 12) * (1 + percent / 100 / 12) * (1 + percent / 100 / 12)) - 1);
+    public int calculate(double creditSum, double quantityMonth, double percent) {
 
-    double EveryMonthTermPay = kreditSum * koefficent;
-        return EveryMonthTermPay;
-}
+        double i = percent / 100 / 12;
+
+        double formula = Math.pow(i + 1, quantityMonth);
+        double coefficient = i * formula / (formula - 1);
+
+        return (int) (creditSum * coefficient);
+
+    }
 }
